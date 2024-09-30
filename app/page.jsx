@@ -7,6 +7,12 @@ import Social from "@/components/Social";
 import Stats from "@/components/Stats";
 
 const Home = () => {
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/HarmeetCV.pdf";
+    link.download = "HarmeetCV.pdf";
+    link.click();
+  };
   return (
     <section className="h-full ">
       <div className="container mx-auto h-full">
@@ -29,7 +35,7 @@ const Home = () => {
                 variant="outline"
                 size="lg"
                 className="flex uppercase items-center gap-2"
-                // onClick={handleDownload}
+                onClick={handleDownload}
               >
                 <span>Download CV</span>
                 <FiDownload className="text-xl" />
