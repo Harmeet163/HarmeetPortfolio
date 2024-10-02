@@ -30,7 +30,7 @@ const servi = [
   },
 ];
 import { motion } from "framer-motion";
-
+ 
 const services = () => {
   return (
     <section className="min-h-[80vh] flex flex-col justify-center py-12 xl:py-0">
