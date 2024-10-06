@@ -19,6 +19,7 @@ const Stairs = () => {
 
   return (
     <>
+    
       {[...Array(6)].map((_, index) => {
         return (
           <motion.div
