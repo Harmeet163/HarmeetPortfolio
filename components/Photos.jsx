@@ -24,6 +24,7 @@ const Photos = () => {
         xl:w-[498px] xl:h-[498px] 
          mix-blend-lighten absolute "
       >
+        
         <Image
           src="/Harmeet/1.jpg"
           priority
