@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { AwardIcon } from "lucide-react";
 
 const info = [
   {
@@ -34,6 +35,60 @@ const info = [
 ];
 
 const Contact = () => {
+  const [userdata, setUserdata] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+    services: "",
+    message: "",
+  });
+
+  const postuserdata = (event) => {
+    const { name, value } = event.target;
+    setUserdata({ ...userdata, [name]: value });
+  };
+
+  const submitData = async (event) => {
+    event.preventDefault();
+    const { firstname, lastname, phone, email, message, services } = userdata;
+    if (firstname && lastname && phone && email && message && services) {
+      const res = await fetch(
+        "https://harmeetportfolioform-default-rtdb.firebaseio.com/formdata.json",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstname,
+            lastname,
+            phone,
+            email,
+            services,
+            message,
+          }),
+        }
+      );
+
+      if(res){
+        setUserdata({
+          firstname: "",
+          lastname: "",
+          email: "",
+          phone: "",
+          services: "",
+          message: "",
+        });
+      alert("done sir")
+      }else{
+        alert("not happing")
+      }
+
+    } else {
+      alert("fill data");
+    }
+  };
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -58,37 +113,37 @@ const Contact = () => {
                   type="text"
                   name="firstname"
                   placeholder="Firstname"
-                  // value={userdata.firstname}
-                  // onChange={postuserdata}
+                  value={userdata.firstname}
+                  onChange={postuserdata}
                 />
                 <Input
                   type="text"
                   name="lastname"
                   placeholder="Lastname"
-                  // value={userdata.lastname}
-                  // onChange={postuserdata}
+                  value={userdata.lastname}
+                  onChange={postuserdata}
                 />
                 <Input
                   type="email"
                   name="email"
                   placeholder="Email"
-                  // value={userdata.email}
-                  // onChange={postuserdata}
+                  value={userdata.email}
+                  onChange={postuserdata}
                 />
                 <Input
                   type="phone"
                   name="phone"
                   placeholder="Phone"
-                  // value={userdata.phone}
-                  // onChange={postuserdata}
+                  value={userdata.phone}
+                  onChange={postuserdata}
                 />
               </div>
 
               <Select
-                // value={userdata.services}
-                // onValueChange={(value) =>
-                //   setUserdata({ ...userdata, services: value })
-                // }
+              value={userdata.services}
+              onValueChange={(value) =>
+                setUserdata({ ...userdata, services: value })
+              }
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a service" />
@@ -108,13 +163,11 @@ const Contact = () => {
                 type="text"
                 name="message"
                 placeholder="Message"
-                // value={userdata.message}
-                // onChange={postuserdata}
+                value={userdata.message}
+                onChange={postuserdata}
               />
 
-              <Button size="md" className="max-w-40" 
-              // onClick={submitData}
-              >
+              <Button size="md" className="max-w-40" onClick={submitData}>
                 Send Message
               </Button>
             </form>
@@ -140,6 +193,6 @@ const Contact = () => {
       </div>
     </motion.section>
   );
-}
+};
 
-export default Contact
+export default Contact;
