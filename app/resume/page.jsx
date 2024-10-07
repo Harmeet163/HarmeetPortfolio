@@ -1,15 +1,10 @@
 "use client";
 import { Description } from "@radix-ui/react-dialog";
 import { Item } from "@radix-ui/react-select";
-import {
-  FaHtml5,
-  FaCss3,
-  FaReact,
-  FaFigma,
-  FaNodeJs,
-  FaJs,
-} from "react-icons/fa";
-import { SiTailwindcss, SiNextdotjs } from "react-icons/si";
+
+import { FaHtml5, FaCss3, FaReact, FaFigma, FaNodeJs, FaJs, FaGit, FaGoogle } from "react-icons/fa";
+import { SiTailwindcss, SiNextdotjs, SiBootstrap, SiFirebase, SiVite } from "react-icons/si";
+import { AiOutlineCode } from "react-icons/ai";
 
 // about part
 const about = {
@@ -117,41 +112,86 @@ const education = {
 };
 
 // skills
+
+// const skills = {
+//   title: "My Skills",
+//   description:
+//     "Here are some of the tools and technologies I have experience with:",
+//   skillCategories: [
+//     {
+//       category: "Languages",
+//       skillList: ["HTML", "CSS", "JavaScript"],
+//     },
+//     {
+//       category: "Libraries",
+//       skillList: ["Bootstrap", "Material UI", "Tailwind CSS"],
+//     },
+//     {
+//       category: "Design",
+//       skillList: ["Figma", "UI Design"],
+//     },
+//     {
+//       category: "Frameworks",
+//       skillList: ["React JS", "Next JS", "Vite React"],
+//     },
+//     {
+//       category: "Developer Tools",
+//       skillList: ["Git", "VSCode", "Google Analytics"],
+//     },
+//     {
+//       category: "Backend",
+//       skillList: ["Firebase"],
+//     },
+//   ],
+// };
 const skills = {
-  title: "my skills",
-  description: "rrever rvrevre",
-  skillList: [
+  title: "My Skills",
+  description: "Here are some of the tools and technologies I have experience with:",
+  skillCategories: [
     {
-      icon: <FaHtml5 />,
-      name: "Html 5",
+      category: "Languages",
+      skillList: [
+        { name: "HTML", icon: <FaHtml5 /> },
+        { name: "CSS", icon: <FaCss3 /> },
+        { name: "JavaScript", icon: <FaJs /> },
+      ],
     },
     {
-      icon: <FaCss3 />,
-      name: "css ",
+      category: "Libraries",
+      skillList: [
+        { name: "Bootstrap", icon: <SiBootstrap /> },
+        { name: "Material UI", icon: <AiOutlineCode /> }, // Example icon for Material UI
+        { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+      ],
     },
     {
-      icon: <FaJs />,
-      name: "JS ",
+      category: "Design",
+      skillList: [
+        { name: "Figma", icon: <FaFigma /> },
+        { name: "UI Design", icon: <AiOutlineCode /> }, // Example icon for UI Design
+      ],
     },
     {
-      icon: <FaReact />,
-      name: "React ",
+      category: "Frameworks",
+      skillList: [
+        { name: "React JS", icon: <FaReact /> },
+        { name: "Next JS", icon: <SiNextdotjs /> },
+        { name: "Vite React", icon: <SiVite /> },
+      ],
     },
     {
-      icon: <FaFigma />,
-      name: "figma",
+      category: "Developer Tools",
+      skillList: [
+        { name: "Git", icon: <FaGit /> },
+        { name: "VSCode", icon: <AiOutlineCode /> }, // VSCode can use a generic icon
+        { name: "Google Analytics", icon: <FaGoogle /> },
+      ],
     },
     {
-      icon: <FaNodeJs />,
-      name: "node",
-    },
-    {
-      icon: <SiNextdotjs />,
-      name: "next",
-    },
-    {
-      icon: <SiTailwindcss />,
-      name: "Tailwind",
+      category: "Backend",
+      skillList: [
+        { name: "Firebase", icon: <SiFirebase /> },
+      ],
     },
   ],
 };
@@ -261,7 +301,7 @@ const resume = () => {
             </TabsContent>
 
             {/* skills */}
-            <TabsContent value="skills" className="w-full h-full">
+            {/* <TabsContent value="skills" className="w-full h-full">
               <div className="flex flex-col gap-[30px]">
                 <div className="flex flex-col gap-[30px] text-center xl:text-left">
                   <h3 className="text-4xl font-bold">{skills.title}</h3>
@@ -292,6 +332,41 @@ const resume = () => {
                     );
                   })}
                 </ul>
+              </div>
+            </TabsContent> */}
+            {/* skills */}
+            <TabsContent value="skills" className="w-full h-full">
+              <div className="flex flex-col gap-[30px]">
+                <div className="flex flex-col gap-[30px] text-center xl:text-left">
+                  <h3 className="text-4xl font-bold">{skills.title}</h3>
+                  <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
+                    {skills.description}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 gap-8">
+                  {skills.skillCategories.map((category, index) => (
+                    <div key={index} className="flex flex-col gap-4">
+                      <h4 className="text-2xl font-semibold text-accent">
+                        {category.category}
+                      </h4>
+                      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                        {category.skillList.map((skill, skillIndex) => (
+                          <li
+                            key={skillIndex}
+                            className="bg-[#232329] h-[150px] py-6 px-8 rounded-xl flex 
+                flex-col justify-center items-center gap-2"
+                          >
+                            <div className="text-4xl text-accent">
+                              {skill.icon}
+                            </div>
+                            <p className="text-lg">{skill.name}</p>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
             </TabsContent>
 
